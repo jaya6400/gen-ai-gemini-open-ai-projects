@@ -10,6 +10,7 @@ client = OpenAI(
     base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
 )
 
+# Zero Short Prompting
 response = client.chat.completions.create(
     model="gemini-2.5-flash",
     messages=[
