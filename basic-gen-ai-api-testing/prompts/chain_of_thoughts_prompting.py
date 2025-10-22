@@ -1,8 +1,8 @@
 from dotenv import load_dotenv
 from openai import OpenAI
-import os
-
-import json
+import os, json
+import tkinter as tk
+from tkinter import simpledialog
 
 load_dotenv()
 gemini_api_key = os.getenv('GEMINI_API_KEY')
@@ -48,8 +48,11 @@ message_history = [
     { "role": "system", "content": SYSTEM_PROMPT },
 ]
 
-user_query = input("👉🏻")
-message_history.append({ "role": "user", "content": user_query })
+root = tk.Tk()
+root.withdraw()  # hide main window
+answer = simpledialog.askstring("Input", "👉🏻  Enter text:")
+
+message_history.append({ "role": "user", "content": answer })
 
 while True:
     response = client.chat.completions.create(
